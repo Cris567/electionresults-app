@@ -1,10 +1,7 @@
 import csv
+import json
 
 file = 'btw17_kerg.csv'
-
-def get_content(line):
-	print (line)
-	print (str(len(line)) + ' entries')
 
 def create_list(headers, data):
 	list = []
@@ -27,7 +24,6 @@ def create_list(headers, data):
 
 	return list
 
-
 def csv_reader():
 	collection = []
 	headers = []
@@ -40,7 +36,7 @@ def csv_reader():
 
 				elif reader.line_num >= 4:
 					region = {
-						id: line[0],
+						'id': line[0],
 						'name': line[1],
 						'belongs_to': line[2],
 						'results': create_list(headers, line)
@@ -51,7 +47,10 @@ def csv_reader():
 		print(e)
 		sys.exit(-1)
 
-	print('Header entries: ' + str(len(headers)))
-	print(headers)
+	return collection
 
-csv_reader()
+# GO
+collection = csv_reader()
+#write data to json file
+with open('btw17_data.json', 'w') as outfile:
+    json.dump(collection, outfile, indent=4, default=str)
