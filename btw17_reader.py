@@ -34,7 +34,7 @@ def csv_reader():
 				if reader.line_num == 1:
 					headers = line
 
-				elif reader.line_num >= 4:
+				elif reader.line_num >= 4 and line[0] != '':
 					region = {
 						'id': line[0],
 						'name': line[1],
