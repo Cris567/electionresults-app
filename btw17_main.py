@@ -45,28 +45,22 @@ class Vote(Base):
 # generate the DB schema automatically
 Base.metadata.create_all(engine)
 
-def insert_votes(party, id_p):
-	for results in party.get('first'):
-		e_current = results.get('current')
-		e_previous = results.get('previous')
-	for results in party.get('second'):
-		z_current = results.get('current')
-		z_previous = results.get('previous')
-		new = Vote(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous)
-		session.add(new)
-		session.commit()
-	return 'SUCCESS'
-
 def insert_results(county, id_c):
 
 	for result in county.get('results'):
-		print(result)
 		name = result.get('name')
 		county_id = id_c
-		new = Party(name = name, county_id = county_id)
-		session.add(new)
+		new1 = Party(name = name, county_id = county_id)
+		session.add(new1)
 		session.flush()
-		insert_votes(result, new.id)
+
+		e_current = result.get('first').get('current')
+		e_previous = result.get('first').get('previous')
+		z_current = result.get('second').get('current')
+		z_previous = result.get('second').get('previous')
+		new2 = Vote(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous, party_id = new1.id)
+		session.add(new2)
+		session.commit()
 	return 'SUCCESS'
 
 def insert_csv_data():
