@@ -50,7 +50,6 @@ def csv_reader():
 	return collection
 
 # GO
-collection = csv_reader()
-#write data to json file
-with open('btw17_data.json', 'w') as outfile:
-    json.dump(collection, outfile, indent=4, default=str)
+# collection = csv_reader()
+# write data to json file
+# json_dump('btw17_data.json')
