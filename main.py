@@ -2,8 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Integer, Column, String, ForeignKey
-from btw17_reader import csv_reader
-from btw17_utils import json_dump
+from reader import csv_reader
+from utils import json_dump
 
 engine = create_engine('sqlite:///btw_results.db')
 Session = sessionmaker(bind = engine)
@@ -31,9 +31,10 @@ class Party(Base):
 	name = Column(String)
 	county_id = Column(Integer, ForeignKey('counties.id'))
 	counties = relationship('County')
+	results = relationship('Result')
 
-class Vote(Base):
-	__tablename__ = 'votes'
+class Result(Base):
+	__tablename__ = 'results'
 	id = Column(Integer, primary_key = True)
 	e_current = Column(Integer)
 	e_previous = Column(Integer)
@@ -47,18 +48,18 @@ Base.metadata.create_all(engine)
 
 def insert_results(county, id_c):
 
-	for result in county.get('results'):
-		name = result.get('name')
+	for r in county.get('results'):
+		name = r.get('name')
 		county_id = id_c
 		new1 = Party(name = name, county_id = county_id)
 		session.add(new1)
 		session.flush()
 
-		e_current = result.get('first').get('current')
-		e_previous = result.get('first').get('previous')
-		z_current = result.get('second').get('current')
-		z_previous = result.get('second').get('previous')
-		new2 = Vote(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous, party_id = new1.id)
+		e_current = r.get('first').get('current')
+		e_previous = r.get('first').get('previous')
+		z_current = r.get('second').get('current')
+		z_previous = r.get('second').get('previous')
+		new2 = Result(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous, party_id = new1.id)
 		session.add(new2)
 		session.commit()
 	return 'SUCCESS'
@@ -83,5 +84,5 @@ def insert_csv_data():
 	print('SUCCESS - Provinces/Counties inserted')
 	return 'SUCCESS'
 
-insert_csv_data()
+# insert_csv_data()
 
