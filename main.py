@@ -109,7 +109,4 @@ def get_all_counties():
 	return session.query(County).all()
 
 def get_results_by_county_id(county_id):
-	return session.query(Results).filter_by(county_id = county_id)
-
-# Execute only once to create tables and fill database
-insert_csv_data()
+	return = session.query(Result).filter_by(county_id = county_id)
