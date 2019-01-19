@@ -146,10 +146,6 @@ def get_all_counties():
 	results = session.query(County).all()
 	return parse_counties(results)
 
-def get_results_by_county_id(county_id):
-	results = session.query(Result).filter_by(county_id = county_id)
-	return parse_results(results)
-
-def get_results_by_party_id(party_id):
-	results = session.query(Result).filter_by(party_id = party_id)
+def get_results_by_county_party_id(county_id, party_id):
+	results = session.query(Result).filter_by(county_id = county_id, party_id = party_id)
 	return parse_results(results)
