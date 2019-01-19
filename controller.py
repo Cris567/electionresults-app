@@ -21,5 +21,4 @@ def results_by_id():
         county_id = 1
     return jsonify(results = get_results_by_county_id(county_id))
 
-
 app.run(debug=True)

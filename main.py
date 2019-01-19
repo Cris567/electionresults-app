@@ -3,7 +3,6 @@ from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Integer, Column, String, ForeignKey
-from sqlalchemy.inspection import inspect
 from reader import csv_reader
 from utils import json_dump
 import json
@@ -12,7 +11,7 @@ engine = create_engine('sqlite:///btw_results.db')
 Session = sessionmaker(bind = engine)
 session = Session()
 
-Base = declarative_base ()
+Base = declarative_base()
 
 class Province(Base):
 	__tablename__ = 'provinces'
@@ -149,4 +148,8 @@ def get_all_counties():
 
 def get_results_by_county_id(county_id):
 	results = session.query(Result).filter_by(county_id = county_id)
+	return parse_results(results)
+
+def get_results_by_province_id(province_id):
+	results = session.query(Result).filter_by(province_id = province_id)
 	return parse_results(results)

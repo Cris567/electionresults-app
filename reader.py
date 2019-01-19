@@ -1,5 +1,4 @@
 import csv
-import json
 
 file = 'btw17_kerg.csv'
 
@@ -25,7 +24,7 @@ def create_list(headers, data):
 	return list
 
 def csv_reader():
-	collection = []
+	data = []
 	headers = []
 	try:
 		with open(file) as f:
@@ -47,9 +46,4 @@ def csv_reader():
 		print(e)
 		sys.exit(-1)
 
-	return collection
-
-# GO
-# collection = csv_reader()
-# write data to json file
-# json_dump('btw17_data.json')
+	return data
