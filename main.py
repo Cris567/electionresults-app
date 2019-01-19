@@ -109,4 +109,4 @@ def get_all_counties():
 	return session.query(County).all()
 
 def get_results_by_county_id(county_id):
-	return = session.query(Result).filter_by(county_id = county_id)
+	return session.query(Result).filter_by(county_id = county_id)

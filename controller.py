@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonfy
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from main import get_all_counties, get_all_provinces, get_results_by_county_id
 
