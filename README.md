@@ -4,20 +4,22 @@
 Data analysis and visualisation using Python3, Flask, Angular, SQLAlchemy, sqlite3.
 
 Analysing a *.csv file with Bundestagswahlen 2017 (german elections 2017) results and visualising those.
-
+  
 ## Backend SETUP:
 
 Basic system (using terminal):
 
-Setup virtual environment:
-(install python3 if not already done > brew install python)
+Setup virtual environment:  
+(install python3 if not already done `> brew install python)`  
 move to your project folder `> cd "path/projectFolder"`  
 create virtual environment `> python3 -m venv "/projectFolder/"`  
 activate virtual environment `> source "/projectFolder/bin/activate"`  
   
-Setup Flask:
+Setup Flask:  
 `> pip install flask`  
 `> pip install -U flask_cors`  
+Start Flask: `python controller.py`  
+Requests `http://127.0.0.1:5000/getAllProvinces` (check controller.py for all available methods)  
   
 Create/Open database with sqlite3  
 `> sqlite3 btw_results.db`  
