@@ -3,7 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=macos,flask,python,angular
 
 #System Files
-/bin/
+/bin
 .DS_Store
 *.meta
 *.swf
