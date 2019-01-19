@@ -41,7 +41,7 @@ def csv_reader():
 						'results': create_list(headers, line)
 
 					}
-					collection.append(region)
+					data.append(region)
 	except csv.Error as e:
 		print(e)
 		sys.exit(-1)
