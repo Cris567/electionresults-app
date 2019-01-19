@@ -14,11 +14,19 @@ def all_counties():
     return jsonify(get_all_counties())
 
 @app.route('/getResultsByCountyId')
-def results_by_id():
+def results_by_county_id():
     county_id = request.args.get('countyId')
     if county_id == None:
         # TODO only placeholder
         county_id = 1
     return jsonify(get_results_by_county_id(county_id))
+
+@app.route('/getResultsByPartyId')
+def results_by_party_id():
+    party_id = request.args.get('partyId')
+    if party_id == None:
+        # id 4 = overall valid votes
+        party_id = 4 #
+    return jsonify(get_results_by_county_id(party_id))
 
 app.run(debug=True)

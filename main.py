@@ -150,6 +150,6 @@ def get_results_by_county_id(county_id):
 	results = session.query(Result).filter_by(county_id = county_id)
 	return parse_results(results)
 
-def get_results_by_province_id(province_id):
-	results = session.query(Result).filter_by(province_id = province_id)
+def get_results_by_party_id(party_id):
+	results = session.query(Result).filter_by(party_id = party_id)
 	return parse_results(results)
