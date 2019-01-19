@@ -3,8 +3,10 @@ from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Integer, Column, String, ForeignKey
+from sqlalchemy.inspection import inspect
 from reader import csv_reader
 from utils import json_dump
+import json
 
 engine = create_engine('sqlite:///btw_results.db')
 Session = sessionmaker(bind = engine)
@@ -102,11 +104,22 @@ def insert_csv_data():
 	if insert_counties(data) == 'SUCCESS':
 		print('Data import successful')
 
+def parse_provinces(data):
+	provinces = []
+	for p in data:
+		province = {
+			'p_id': p.id,
+			'p_name': p.name	
+		}
+		provinces.append(province)
+	return provinces
+
 def get_all_provinces():
-	return session.query(Province).all()
+	results = session.query(Province).all()
+	return parse_provinces(results)
 
 def get_all_counties():
-	return session.query(County).all()
+	results = session.query(County).all()
 
 def get_results_by_county_id(county_id):
-	return session.query(Result).filter_by(county_id = county_id)
+	results = session.query(Result).filter_by(county_id = county_id)
