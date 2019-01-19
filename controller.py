@@ -11,7 +11,7 @@ def all_provinces():
 
 @app.route('/getAllCounties')
 def all_counties():
-    return jsonfy(get_all_actors())
+    return jsonfy(get_all_counties())
 
 @app.route('/getResultsByCountyId')
 def results_by_id():
