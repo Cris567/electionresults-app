@@ -1,10 +1,7 @@
-
-# Created by https://www.gitignore.io/api/macos,flask,python,angular
-# Edit at https://www.gitignore.io/?templates=macos,flask,python,angular
-
 #System Files
 /bin
 .DS_Store
+Thumbs.db
 *.meta
 *.swf
 
@@ -21,6 +18,7 @@ sqlite3_analyzer
 # compiled output
 /dist
 /tmp
+/out-tsc
 /app/**/*.js
 /app/**/*.js.map
 
@@ -30,15 +28,31 @@ sqlite3_analyzer
 
 # IDEs and editors
 /.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+>>>>>>> electionapp/master
 
 # misc
 /.sass-cache
 /connect.lock
-/coverage/*
 /libpeerconnection.log
 npm-debug.log
 testem.log
 /typings
+/coverage
+yarn-error.log
 
 # e2e
 /e2e/*.js
@@ -192,57 +206,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-### Python ###
-# Byte-compiled / optimized / DLL files
-
-# C extensions
-
-# Distribution / packaging
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-
-# Installer logs
-
-# Unit test / coverage reports
-
-# Translations
-
-# Django stuff:
-
-# Flask stuff:
-
-# Scrapy stuff:
-
-# Sphinx documentation
-
-# PyBuilder
-
-# Jupyter Notebook
-
-# IPython
-
-# pyenv
-
-# celery beat schedule file
-
-# SageMath parsed files
-
-# Environments
-
-# Spyder project settings
-
-# Rope project settings
-
-# mkdocs documentation
-
-# mypy
-
-# Pyre type checker
-
-### Python Patch ###
-.venv/
-
-# End of https://www.gitignore.io/api/macos,flask,python,angular
