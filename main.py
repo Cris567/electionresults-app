@@ -114,12 +114,39 @@ def parse_provinces(data):
 		provinces.append(province)
 	return provinces
 
+def parse_counties(data):
+	counties = []
+	for c in data:
+		county = {
+			'c_id': c.id,
+			'c_name': c.name,
+			'c_belongs_to': c.belongs_to
+		}
+		counties.append(county)
+	return counties
+
+def parse_results(data):
+	results = []
+	for r in data:
+		result = {
+			'e_current': r.e_current,
+			'e_previous': r.e_previous,
+			'z_current': r.z_current,
+			'z_previous': r.z_previous,
+			'party_id': r.party_id,
+			'county_id': r.county_id
+		}
+		results.append(result)
+	return results
+
 def get_all_provinces():
 	results = session.query(Province).all()
 	return parse_provinces(results)
 
 def get_all_counties():
 	results = session.query(County).all()
+	return parse_counties(results)
 
 def get_results_by_county_id(county_id):
 	results = session.query(Result).filter_by(county_id = county_id)
+	return parse_results(results)

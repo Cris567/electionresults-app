@@ -16,8 +16,10 @@ def all_counties():
 @app.route('/getResultsByCountyId')
 def results_by_id():
     county_id = request.args.get('countyId')
-    # if county_id == None:
-    #    county_id = 99
+    if county_id == None:
+        # TODO only placeholder
+        county_id = 1
     return jsonify(results = get_results_by_county_id(county_id))
+
 
 app.run(debug=True)
