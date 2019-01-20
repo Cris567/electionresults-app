@@ -13,7 +13,13 @@
   <div class="regions">
     <h1>Bundesland</h1>
       <ul ng-model="provinces">
-        <li ng-repeat="province in provinces"><a href="#">{{province}}</a></li>
+        <li ng-repeat="province in provinces track by $index"><a href="#" ng-click="displayCounties(province.p_id)">{{province.p_name}}</a></li>
+      </ul>
+  </div>
+  <div class="counties">
+    <h1>Wahlkreis</h1>
+      <ul ng-model="counties">
+        <li ng-repeat="county in counties track by $index"><a href="#">{{county.c_name}}</a></li>
       </ul>
   </div>
 </div>
