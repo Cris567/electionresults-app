@@ -138,12 +138,15 @@ def parse_results(data):
 		results.append(result)
 	return results
 
-def get_all_provinces():
+def get_provinces():
 	results = session.query(Province).all()
 	return parse_provinces(results)
 
-def get_all_counties():
-	results = session.query(County).all()
+def get_counties(province_id):
+	if province_id == None or province_id == '99':
+		results = session.query(County).all()
+	else:
+		results = session.query(County).filter_by(belongs_to = province_id)
 	return parse_counties(results)
 
 def get_results_by_county_party_id(county_id, party_id):
