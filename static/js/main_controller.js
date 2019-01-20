@@ -15,12 +15,8 @@ app.controller("main-controller", function ($scope, $http) {
     $scope.displayCounties = function (id) {
       var counties = [];
 
-        $http.get('/getCounties').success(function (response) {
-          for (var i = 0; i < response.length; i++) {
-            if (response[i].c_belongs_to == id) {
-              counties[i] = response[i];
-            }
-          }
+        $http.get('/getCounties?provinceId=' + id).success(function (response) {
+          counties = response;
           $scope.counties = counties;
           }).error(function (response) {
               console.log(response);
