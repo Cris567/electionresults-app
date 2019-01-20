@@ -1,9 +1,13 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from main import get_counties, get_provinces, get_results_by_county_party_id
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route('/')
+def initialize():
+    return send_from_directory('templates', 'index.html')
 
 @app.route('/getProvinces')
 def provinces():

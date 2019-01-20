@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Wahlergebnisse 2017</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <script type="text/javascript" src="/static/js/main_controller.js"></script>
+</head>
+
+<body ng-app="elections-app">
+  <div class="header" ng-controller="main-controller">
+      <h1> {{ title }} </h1>
+  <div class="regions">
+    <h1>Bundesland</h1>
+      <ul ng-model="provinces">
+        <li ng-repeat="province in provinces"><a href="#">{{province}}</a></li>
+      </ul>
+  </div>
+</div>
+</body>
+</html>
