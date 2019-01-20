@@ -150,5 +150,11 @@ def get_counties(province_id):
 	return parse_counties(results)
 
 def get_results_by_county_party_id(county_id, party_id):
+	if county_id == None:
+		# TODO only placeholder
+		county_id = 1
+	if party_id == None:
+		# id 4 = overall valid votes
+		party_id = 4 #
 	results = session.query(Result).filter_by(county_id = county_id, party_id = party_id)
 	return parse_results(results)
