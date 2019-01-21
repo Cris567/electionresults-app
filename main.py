@@ -136,7 +136,8 @@ def parse_results(data):
 			'z_current': r.z_current,
 			'z_previous': r.z_previous,
 			'party_id': r.party_id,
-			'county_id': r.county_id
+			'county_id': r.county_id,
+			'province_id': r.province_id
 		}
 		results.append(result)
 	return results
