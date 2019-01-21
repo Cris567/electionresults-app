@@ -4,6 +4,8 @@
     <meta charset="UTF-8"/>
     <title>Wahlergebnisse 2017</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <script src="/static/node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="/static/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
     <script type="text/javascript" src="/static/js/main_controller.js"></script>
 </head>
 
@@ -19,8 +21,23 @@
   <div class="counties">
     <h1>Wahlkreis</h1>
       <ul ng-model="counties">
-        <li ng-repeat="county in counties track by $index"><a href="#">{{county.c_name}}</a></li>
+        <li ng-repeat="county in counties track by $index"><a href="#" ng-click="displayVotes(county.c_id)">{{county.c_name}}</a></li>
       </ul>
+  </div>
+  <div class="table">
+    <h1>Ergebnis</h1>
+    <table ng-model="parties">
+        <tr>
+            <th>Partei</th>
+            <th>Erststimme</th>
+            <th>Zweitstimme</th>
+        </tr>
+        <tr ng-repeat="party in parties">
+            <td>{{party.party_id}}</td>
+            <td>{{party.perc_e}}%</td>
+            <td>{{party.perc_z}}%</td>
+        </tr>
+    </table>
   </div>
 </div>
 </body>

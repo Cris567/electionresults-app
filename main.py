@@ -108,7 +108,7 @@ def parse_provinces(data):
 	for p in data:
 		province = {
 			'p_id': p.id,
-			'p_name': p.name	
+			'p_name': p.name
 		}
 		provinces.append(province)
 	return provinces
@@ -155,6 +155,9 @@ def get_results_by_county_party_id(county_id, party_id):
 		county_id = 1
 	if party_id == None:
 		# id 4 = overall valid votes
-		party_id = 4 #
+		# party_id = 4 #
+		results = session.query(Result).filter_by(county_id = county_id)
+		return parse_results(results)
+
 	results = session.query(Result).filter_by(county_id = county_id, party_id = party_id)
 	return parse_results(results)
