@@ -44,6 +44,8 @@ class Result(Base):
 	parties = relationship('Party')
 	county_id = Column(Integer, ForeignKey('counties.id'))
 	counties = relationship('County')
+	province_id = Column(Integer, ForeignKey('provinces.id'))
+	provinces = relationship('Province')
 
 # generate the DB schema automatically
 Base.metadata.create_all(engine)
@@ -55,11 +57,12 @@ def get_party_by_name(party_name):
 		party = []
 	return party
 
-def insert_results(county, id_c):
+def insert_results(county, id_c, id_p):
 
 	for r in county.get('results'):
 		name = r.get('name')
 		county_id = id_c
+		province_id = id_p
 		party = get_party_by_name(name)
 		if party != []:
 			party_id = party.id
@@ -74,7 +77,7 @@ def insert_results(county, id_c):
 		e_previous = r.get('first').get('previous')
 		z_current = r.get('second').get('current')
 		z_previous = r.get('second').get('previous')
-		new_results = Result(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous, party_id = party_id, county_id = id_c)
+		new_results = Result(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous, party_id = party_id, county_id = id_c, province_id = province_id)
 		session.add(new_results)
 		session.commit()
 	return 'SUCCESS'
@@ -91,7 +94,7 @@ def insert_counties(data):
 		session.add(new)
 		session.commit()
 
-		if insert_results(c, id) == 'SUCCESS':
+		if insert_results(c, id, belongs_to) == 'SUCCESS':
 			print('Results inserted for ' + name)
 
 	return 'SUCCESS'
