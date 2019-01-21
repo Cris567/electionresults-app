@@ -147,6 +147,7 @@ def get_provinces():
 	return parse_provinces(results)
 
 def get_counties(province_id):
+	results = []
 	if province_id == None or province_id == '99':
 		results = session.query(County).all()
 	else:
