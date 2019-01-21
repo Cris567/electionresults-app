@@ -35,14 +35,14 @@ app.controller("main-controller", function ($scope, $http) {
           totalVotes[0] = votes[3].e_current;
           totalVotes[1] = votes[3].z_current;
           for (var v = 4; v < votes.length; v++) {
-            if (votes[v].e_current != "" && votes[v].z_current != "") {
+            if (votes[v].e_current != "" && votes[v].z_current != "" && votes[v].province_id != 99) {
               let perc_e = parseFloat((votes[v].e_current / totalVotes[0]) * 100).toFixed(2);
               let perc_z = parseFloat((votes[v].z_current / totalVotes[1]) * 100).toFixed(2);
               votes[v].perc_e = perc_e;
               votes[v].perc_z = perc_z;
               parties.push(votes[v]);
             }
-          }
+          }console.log(parties);
           $scope.parties = parties;
           }).error(function (response) {
               console.log(response);
