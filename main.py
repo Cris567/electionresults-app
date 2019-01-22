@@ -127,6 +127,16 @@ def parse_counties(data):
 		counties.append(county)
 	return counties
 
+def parse_party(data):
+	parties = []
+	for p in data:
+		party = {
+			'p_id': p.id,
+			'p_name': p.name
+		}
+		parties.append(party)
+	return parties
+
 def parse_results(data):
 	results = []
 	for r in data:
@@ -153,6 +163,15 @@ def get_counties(province_id):
 	else:
 		results = session.query(County).filter_by(belongs_to = province_id)
 	return parse_counties(results)
+
+def get_parties(party_id):
+	results = []
+	if party_id == None:
+		results = session.query(Party).all()
+	else:
+		results = session.query(Party).filter_by(id = party_id)
+
+	return parse_party(results)
 
 def get_results_by_county_party_id(county_id, party_id):
 	if county_id == None:
