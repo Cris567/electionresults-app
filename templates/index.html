@@ -7,27 +7,29 @@
     <script src="/static/node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="/static/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
     <script type="text/javascript" src="/static/js/main_controller.js"></script>
-    <!-- <link rel="stylesheet" href="App.css"> -->
+    <link rel="stylesheet" type="text/css" href="/static/styles/app.css">
 </head>
 
 <body ng-app="elections-app">
-  <div class="header" ng-controller="main-controller">
-      <h1> {{ title }} </h1>
-  <div class="regions">
-    <h1>Bundesland</h1>
+  <div ng-controller="main-controller">
+      <div class="header">
+        <h1>Wahlergebnisse 2017</h1>
+      </div>
+  <div class="listsection regions">
+    <h2>Bundesland</h2>
       <ul ng-model="provinces">
         <li ng-repeat="province in provinces track by $index"><a href="#" ng-click="displayCounties(province.p_id)">{{province.p_name}}</a></li>
       </ul>
   </div>
-  <div class="counties">
-    <h1>Wahlkreis</h1>
+  <div class="listsection counties">
+    <h2>Wahlkreis</h2>
     <input type="text" id="search-input" onkeyup="search()" placeholder="Nach Wahlkreis filtern.." title="Nach Wahlkreis filtern">
       <ul id="countylist" ng-model="counties">
         <li ng-repeat="county in counties track by $index"><a href="#" ng-click="displayVotes(county.c_id)">{{county.c_name}}</a></li>
       </ul>
   </div>
-  <div class="table">
-    <h1>Ergebnis</h1>
+  <div class="chartsection table">
+    <h2>Ergebnis</h2>
     <table ng-model="parties">
         <tr>
             <th>Partei</th>
