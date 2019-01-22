@@ -22,6 +22,7 @@ app.controller("main-controller", function ($scope, $http) {
     });
 
     $scope.displayCounties = function (id) {
+      counties = [];
 
         $http.get('/getCounties?provinceId=' + id).success(function (response) {
           $scope.counties = response;
@@ -59,9 +60,9 @@ app.controller("main-controller", function ($scope, $http) {
               parties.push(votes[v]);
             }
           }
-          for (var c in counties) {
-            if (counties[c].c_id === id) {
-              $scope.selectedCounty = counties[c].c_name;
+          for (c in $scope.counties) {
+            if ($scope.counties[c].c_id === id) {
+              $scope.selectedCounty = $scope.counties[c].c_name;
             }
           }
           $scope.parties = parties;
