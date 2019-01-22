@@ -19,22 +19,33 @@ h1 {
 h2 {
   margin: 15px 0 35px 0;
 }
+
 /* Container */
 .listsection {
   width: 18%;
   float: left;
   padding: 25px;
 }
-.chartsection {
+.chartsection, .pie-chart {
   width: 50%;
   float: left;
   height: auto;
   padding: 25px;
 }
+.pie-chart {
+  padding-top: 0;
+  float: right;
+}
+.chart-pie {
+  margin-bottom: 15px;
+}
 .header {
   width: 100%;
-  background-color: #c7c7c7;
+  background-color: #eaf4f7;
   /* border-bottom: 1px solid #2C9AB7; */
+}
+label {
+  font-weight: 400;
 }
 ul {
   padding-left: 10px;
@@ -49,6 +60,9 @@ li a {
   text-decoration: none;
 }
 a:hover {
+  color: #2C9AB7;
+}
+a:active {
   color: #2C9AB7;
 }
 table {
@@ -75,4 +89,21 @@ td {
 }
 #search-input:focus {
   outline-color: #2C9AB7;
+}
+#active-province {
+  padding-left: 25px;
+  font-weight: 400;
+  color: #2C9AB7;
+}
+#active-county {
+  padding-left: 25px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #2C9AB7;
+}
+#pie1, #pie2 {
+  display: inline-block;
+  width: 50%;
+  float: left;
+  text-align: center;
 }

@@ -29,7 +29,7 @@
       </ul>
   </div>
   <div class="chartsection table">
-    <h2>Ergebnis</h2>
+    <h2>Ergebnis für: <span id="active-province">{{selectedProvince}}</span><span id="active-county">{{selectedCounty}}</span></h2>
     <table ng-model="parties">
         <tr>
             <th>Partei</th>
@@ -44,12 +44,18 @@
     </table>
   </div>
   <div class="pie-chart">
-    <canvas id="pie1" class="chart chart-pie"
-      chart-data="votesInNumbers1" chart-labels="labels" chart-options="options">
-    </canvas>
-    <canvas id="pie2" class="chart chart-pie"
-      chart-data="votesInNumbers2" chart-labels="labels" chart-options="options">
-    </canvas>
+    <div id="pie1">
+      <canvas class="chart chart-pie"
+        chart-data="votesInNumbers1" chart-labels="labels" chart-options="options">
+      </canvas>
+      <label ng-show="toggle">Erststimme</label>
+    </div>
+    <div id="pie2">
+      <canvas class="chart chart-pie"
+        chart-data="votesInNumbers2" chart-labels="labels" chart-options="options">
+      </canvas>
+      <label ng-show="toggle">Zweitstimme</label>
+    </div>
   </div>
 </div>
 </body>
