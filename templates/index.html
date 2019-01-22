@@ -7,6 +7,7 @@
     <script src="/static/node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="/static/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
     <script type="text/javascript" src="/static/js/main_controller.js"></script>
+    <!-- <link rel="stylesheet" href="App.css"> -->
 </head>
 
 <body ng-app="elections-app">
@@ -20,7 +21,8 @@
   </div>
   <div class="counties">
     <h1>Wahlkreis</h1>
-      <ul ng-model="counties">
+    <input type="text" id="search-input" onkeyup="search()" placeholder="Nach Wahlkreis filtern.." title="Nach Wahlkreis filtern">
+      <ul id="countylist" ng-model="counties">
         <li ng-repeat="county in counties track by $index"><a href="#" ng-click="displayVotes(county.c_id)">{{county.c_name}}</a></li>
       </ul>
   </div>
@@ -38,6 +40,11 @@
             <td>{{party.perc_z}}%</td>
         </tr>
     </table>
+  </div>
+  <div class="pie-chart">
+    <canvas id="pie" class="chart chart-pie"
+      chart-data="votesInNumbers" chart-labels="labels" chart-options="options">
+    </canvas>
   </div>
 </div>
 </body>

@@ -28,6 +28,7 @@ app.controller("main-controller", function ($scope, $http) {
     };
 
     $scope.displayVotes = function (id, partyId) {
+    parties = [];
 
         $http.get('/getResultsByCountyPartyId?countyId=' + id).success(function (response) {
           votes = response;
@@ -42,10 +43,44 @@ app.controller("main-controller", function ($scope, $http) {
               votes[v].perc_z = perc_z;
               parties.push(votes[v]);
             }
-          }console.log(parties);
+          }
           $scope.parties = parties;
+          console.log(parties);
           }).error(function (response) {
               console.log(response);
           });
     };
+
+    function getPartyNames(parties) {
+      var arrayBla = [];
+
+      $http.get('/getParties').success(function (response) {
+        console.log(response);
+      for (var p in parties) {
+        var p_id = parties[p].party_id;
+        arrayBla.push(p_id);
+      }
+      }).error(function (response) {
+          console.log(response);
+      });
+      console.log(arrayBla);
+      return arrayBla;
+    }
+
+    $scope.labels = getPartyNames(parties);
+
+    // $scope.votesInNumbers = partyVotes.perc_e;
+
 });
+
+function search() {
+  var searchBar = document.getElementById("search-input").value.toUpperCase();
+  var listitems = document.getElementById("countylist").getElementsByTagName("li");
+  for (var i in listitems) {
+      var link = listitems[i].getElementsByTagName("a")[0];
+      var query = link.textContent || link.innerText;
+      if (query.toUpperCase().indexOf(searchBar) > -1) {
+          listitems[i].style.display = "";
+      } else listitems[i].style.display = "none";
+  }
+}
