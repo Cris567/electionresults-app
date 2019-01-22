@@ -145,12 +145,14 @@ def parse_party(data):
 def parse_results(data):
 	results = []
 	for r in data:
+		party = get_parties(r.party_id)
 		result = {
 			'e_current': r.e_current,
 			'e_previous': r.e_previous,
 			'z_current': r.z_current,
 			'z_previous': r.z_previous,
 			'party_id': r.party_id,
+			'party_name': party[0].get('p_name'),
 			'county_id': r.county_id,
 			'province_id': r.province_id
 		}
@@ -183,8 +185,8 @@ def get_parties(party_id):
 	return parse_party(results)
 
 def get_results_by_county_party_id(county_id, party_id):
-
 	session = Session()
+
 	if county_id == None:
 		# TODO only placeholder
 		county_id = 1
@@ -195,4 +197,5 @@ def get_results_by_county_party_id(county_id, party_id):
 		return parse_results(results)
 
 	results = session.query(Result).filter_by(county_id = county_id, party_id = party_id)
+
 	return parse_results(results)
