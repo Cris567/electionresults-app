@@ -51,6 +51,7 @@ class Result(Base):
 Base.metadata.create_all(engine)
 
 def get_party_by_name(party_name):
+	session = Session()
 	try:
 		party = session.query(Party).filter_by(name = party_name).one()
 	except NoResultFound:
@@ -59,6 +60,7 @@ def get_party_by_name(party_name):
 
 def insert_results(county, id_c, id_p):
 
+	session = Session()
 	for r in county.get('results'):
 		name = r.get('name')
 		county_id = id_c
@@ -78,6 +80,7 @@ def insert_results(county, id_c, id_p):
 		z_current = r.get('second').get('current')
 		z_previous = r.get('second').get('previous')
 		new_results = Result(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous, party_id = party_id, county_id = id_c, province_id = province_id)
+		
 		session.add(new_results)
 		session.commit()
 	return 'SUCCESS'
@@ -91,6 +94,8 @@ def insert_counties(data):
 			new = Province(id = id, name = name)
 		else:
 			new = County(id = id, belongs_to = belongs_to, name = name)
+		
+		session = Session()
 		session.add(new)
 		session.commit()
 
@@ -153,11 +158,14 @@ def parse_results(data):
 	return results
 
 def get_provinces():
+
+	session = Session()
 	results = session.query(Province).all()
 	return parse_provinces(results)
 
 def get_counties(province_id):
 	results = []
+	session = Session()
 	if province_id == None or province_id == '99':
 		results = session.query(County).all()
 	else:
@@ -166,6 +174,7 @@ def get_counties(province_id):
 
 def get_parties(party_id):
 	results = []
+	session = Session()
 	if party_id == None:
 		results = session.query(Party).all()
 	else:
@@ -174,6 +183,8 @@ def get_parties(party_id):
 	return parse_party(results)
 
 def get_results_by_county_party_id(county_id, party_id):
+
+	session = Session()
 	if county_id == None:
 		# TODO only placeholder
 		county_id = 1
