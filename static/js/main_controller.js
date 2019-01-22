@@ -4,7 +4,10 @@ app.controller("main-controller", function ($scope, $http) {
   // var provinces = [];
   var votes = [];
   var parties = [];
+  var labels = [];
   var totalVotes = [];
+  var votesInNumbers1 = [];
+  var votesInNumbers2= [];
   var percentages = [];
 
     $http.get('/getProvinces').success(function(response) {
@@ -29,6 +32,9 @@ app.controller("main-controller", function ($scope, $http) {
 
     $scope.displayVotes = function (id, partyId) {
     parties = [];
+    labels = [];
+    votesInNumbers1 = [];
+    votesInNumbers2 = [];
 
         $http.get('/getResultsByCountyPartyId?countyId=' + id).success(function (response) {
           votes = response;
@@ -41,33 +47,39 @@ app.controller("main-controller", function ($scope, $http) {
               let perc_z = parseFloat((votes[v].z_current / totalVotes[1]) * 100).toFixed(2);
               votes[v].perc_e = perc_e;
               votes[v].perc_z = perc_z;
+              votesInNumbers1.push(votes[v].e_current);
+              votesInNumbers2.push(votes[v].z_current);
+              labels.push(votes[v].party_name);
               parties.push(votes[v]);
             }
           }
           $scope.parties = parties;
-          console.log(parties);
+          $scope.labels = labels;
+          $scope.votesInNumbers1 = votesInNumbers1;
+          $scope.votesInNumbers2 = votesInNumbers2;
+          console.log(labels);
           }).error(function (response) {
               console.log(response);
           });
     };
 
-    function getPartyNames(parties) {
-      var arrayBla = [];
-
-      $http.get('/getParties').success(function (response) {
-        console.log(response);
-      for (var p in parties) {
-        var p_id = parties[p].party_id;
-        arrayBla.push(p_id);
-      }
-      }).error(function (response) {
-          console.log(response);
-      });
-      console.log(arrayBla);
-      return arrayBla;
-    }
-
-    $scope.labels = getPartyNames(parties);
+    // function getPartyNames(parties) {
+    //   var arrayBla = [];
+    //
+    //   $http.get('/getParties').success(function (response) {
+    //     console.log(response);
+    //   for (var p in parties) {
+    //     var p_id = parties[p].party_id;
+    //     arrayBla.push(p_id);
+    //   }
+    //   }).error(function (response) {
+    //       console.log(response);
+    //   });
+    //   console.log(arrayBla);
+    //   return arrayBla;
+    // }
+    //
+    // $scope.labels = getPartyNames(parties);
 
     // $scope.votesInNumbers = partyVotes.perc_e;
 

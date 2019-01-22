@@ -37,15 +37,18 @@
             <th>Zweitstimme</th>
         </tr>
         <tr ng-repeat="party in parties">
-            <td>{{party.party_id}}</td>
+            <td>{{party.party_name}}</td>
             <td>{{party.perc_e}}%</td>
             <td>{{party.perc_z}}%</td>
         </tr>
     </table>
   </div>
   <div class="pie-chart">
-    <canvas id="pie" class="chart chart-pie"
-      chart-data="votesInNumbers" chart-labels="labels" chart-options="options">
+    <canvas id="pie1" class="chart chart-pie"
+      chart-data="votesInNumbers1" chart-labels="labels" chart-options="options">
+    </canvas>
+    <canvas id="pie2" class="chart chart-pie"
+      chart-data="votesInNumbers2" chart-labels="labels" chart-options="options">
     </canvas>
   </div>
 </div>
