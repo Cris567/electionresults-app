@@ -2,15 +2,7 @@ var app = angular.module('elections-app', ['chart.js']);
 
 app.controller("main-controller", function ($scope, $http) {
   var provinces = [];
-  var counties = [];
-  var votes = [];
-  var parties = [];
-  var labels = [];
   var totalVotes = [];
-  var votesInNumbers = [];
-  var votesInNumbers1 = [];
-  var votesInNumbers2= [];
-  var percentages = [];
   $scope.series = ['Erststimmen', 'Zweitstimmen'];
   $scope.toggle = false;
 
@@ -22,7 +14,7 @@ app.controller("main-controller", function ($scope, $http) {
     });
 
     $scope.displayCounties = function (id) {
-      counties = [];
+      var counties = [];
 
         $http.get('/getCounties?provinceId=' + id).success(function (response) {
           $scope.counties = response;
@@ -37,14 +29,14 @@ app.controller("main-controller", function ($scope, $http) {
     };
 
     $scope.displayVotes = function (id, partyId) {
-    parties = [];
-    labels = [];
-    votesInNumbers = [];
-    votesInNumbers1 = [];
-    votesInNumbers2 = [];
+    let parties = [];
+    let labels = [];
+    $scope.votesInNumbers = [];
+    let votesInNumbers1 = [];
+    let votesInNumbers2 = [];
 
         $http.get('/getResultsByCountyPartyId?countyId=' + id).success(function (response) {
-          votes = response;
+          let votes = response;
           $scope.votes = votes;
           totalVotes[0] = votes[3].e_current;
           totalVotes[1] = votes[3].z_current;
@@ -67,9 +59,8 @@ app.controller("main-controller", function ($scope, $http) {
           }
           $scope.parties = parties;
           $scope.labels = labels;
-          votesInNumbers.push(votesInNumbers1);
-          votesInNumbers.push(votesInNumbers2);
-          $scope.votesInNumbers = votesInNumbers;
+          $scope.votesInNumbers.push(votesInNumbers1);
+          $scope.votesInNumbers.push(votesInNumbers2);
           $scope.toggle = true;
           }).error(function (response) {
               console.log(response);
