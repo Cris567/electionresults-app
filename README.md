@@ -1,10 +1,10 @@
 # ElectionresultsApp
 ### Data Visualisation Project
- 
+
 Data analysis and visualisation using Python3, Flask, Angular, SQLAlchemy, sqlite3.
 
 Analysing a *.csv file with Bundestagswahlen 2017 (german elections 2017) results and visualising those.
-  
+
 ## Backend SETUP:
 
 Basic system (using terminal):
@@ -14,51 +14,39 @@ Setup virtual environment:
 move to your project folder `> cd "path/projectFolder"`  
 create virtual environment `> python3 -m venv "/projectFolder/"`  
 activate virtual environment `> source "/projectFolder/bin/activate"`  
-  
+
 Setup Flask:  
 `> pip install flask`  
 `> pip install -U flask_cors`  
 Start Flask: `python controller.py`  
 Requests `http://127.0.0.1:5000/getAllProvinces` (check controller.py for all available methods)  
-  
+
 Create/Open database with sqlite3  
 `> sqlite3 btw_results.db`  
 Run select queries etc. after data import  
 i.e. get all provinces, counties and parties:  
 `sqlite> select * from provinces; select * from counties; select * from parties;`  
-  
-![alt text](https://github.com/Cris567/electionresults-app/blob/master/btw17-db_.png) 
-  
+
+![alt text](https://github.com/Cris567/electionresults-app/blob/master/btw17-db_.png)
+
 Import csv data:  
 `> python3`  
 `>>> from main import insert_csv_data`  
-`>>> insert_csv_data()` 
-  
-## Frontend SETUP
-The Angular part of this project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
+`>>> insert_csv_data()`
 
-Run `npm install -g @angular/cli` to install.
+## Frontend SETUP
+The Angular part of this project was generated with Angular Version 1.7.6.
+
+Run ` npm install angular@1.7.6` to install.
+
+The Charts of this project were visualized with Angular ChartJS.
+
+Run ` npm install chart.js --save` to install.
 
 ### Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-### Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-### Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-### Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Start Flask as described in the Backend Setup above and navigate to `http://localhost:5000/`.
 
 ### Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on Angular ChartJS go check out the [Angular Chart README](http://jtblin.github.io/angular-chart.js/).
