@@ -9,19 +9,19 @@ Analysing a *.csv file with Bundestagswahlen 2017 (german elections 2017) result
 
 Basic system (using terminal):
 
-Setup virtual environment:  
+### Setup virtual environment:  
 (install python3 if not already done `> brew install python)`  
 move to your project folder `> cd "path/projectFolder"`  
 create virtual environment `> python3 -m venv "/projectFolder/"`  
 activate virtual environment `> source "/projectFolder/bin/activate"`  
 
-Setup Flask:  
+### Setup Flask:  
 `> pip install flask`  
 `> pip install -U flask_cors`  
 Start Flask: `python controller.py`  
 Requests `http://127.0.0.1:5000/getAllProvinces` (check controller.py for all available methods)  
 
-Create/Open database with sqlite3  
+### Create/Open database with sqlite3
 `> sqlite3 btw_results.db`  
 Run select queries etc. after data import  
 i.e. get all provinces, counties and parties:  
@@ -29,7 +29,7 @@ i.e. get all provinces, counties and parties:
 
 ![alt text](https://github.com/Cris567/electionresults-app/blob/master/btw17-db_.png)
 
-Import csv data:  
+### Import csv data:
 `> python3`  
 `>>> from main import insert_csv_data`  
 `>>> insert_csv_data()`
