@@ -3,7 +3,8 @@
 
 Data analysis and visualisation using Python3, Flask, Angular, SQLAlchemy, sqlite3.
 
-Analysing a *.csv file with Bundestagswahlen 2017 (german elections 2017) results and visualising those.
+Analysing a *.csv file with Bundestagswahlen 2017 (german elections 2017) results and visualising those.  
+
 (CSV-Source https://www.bundeswahlleiter.de/dam/jcr/72f186bb-aa56-47d3-b24c-6a46f5de22d0/btw17_kerg.csv )  
 
 ## Backend SETUP:
