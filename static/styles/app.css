@@ -26,13 +26,13 @@ h2 {
   float: left;
   padding: 25px;
 }
-.chartsection, .pie-chart {
+.chartsection, .pie-chart, .bar-chart {
   width: 50%;
   float: left;
   height: auto;
   padding: 25px;
 }
-.pie-chart {
+.pie-chart, .bar-chart {
   padding-top: 0;
   float: right;
 }

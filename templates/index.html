@@ -46,16 +46,21 @@
   <div class="pie-chart">
     <div id="pie1">
       <canvas class="chart chart-pie"
-        chart-data="votesInNumbers1" chart-labels="labels" chart-options="options">
+        chart-data="votesInNumbers[0]" chart-labels="labels" chart-options="options">
       </canvas>
       <label ng-show="toggle">Erststimme</label>
     </div>
     <div id="pie2">
       <canvas class="chart chart-pie"
-        chart-data="votesInNumbers2" chart-labels="labels" chart-options="options">
+        chart-data="votesInNumbers[1]" chart-labels="labels" chart-options="options">
       </canvas>
       <label ng-show="toggle">Zweitstimme</label>
     </div>
+  </div>
+  <div class="bar-chart">
+    <canvas id="bar" class="chart chart-bar"
+      chart-data="votesInNumbers" chart-labels="labels" chart-series="series">
+    </canvas>
   </div>
 </div>
 </body>
