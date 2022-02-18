@@ -1,6 +1,6 @@
-var app = angular.module('elections-app', ['chart.js']);
+var app = angular.module('electionresults-app', ['chart.js']);
 
-app.controller("main-controller", function ($scope, $http) {
+app.controller("ng-controller", function ($scope, $http) {
   var provinces = [];
   var totalVotes = [];
   $scope.series = ['Erststimmen', 'Zweitstimmen'];

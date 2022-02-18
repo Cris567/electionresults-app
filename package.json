@@ -2,8 +2,9 @@
   "name": "electionresults-app",
   "version": "1.0.0",
   "description": "Data analysis and visualisation using Python3, Flask, Angular, SQLAlchemy, sqlite3.",
-  "main": "index.js",
+  "main": "./templates/index.html",
   "scripts": {
+    "start": "ng serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,8 @@
   },
   "homepage": "https://github.com/Cris567/electionresults-app#readme",
   "dependencies": {
-    "angular": "^1.7.6",
+    "angular": "^1.8.2",
+    "angular-chart.js": "^1.1.0",
     "chart.js": "^3.7.1"
   }
 }

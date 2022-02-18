@@ -33,23 +33,23 @@ i.e. get all provinces, counties and/or parties:
 `>>> from main import insert_csv_data`  
 `>>> insert_csv_data()` 
 
-## Dependencies
+## Setup
 Python requirements are definded in `requirements` file and can be installed via ` > pip install -r requirements` 
 
 Node dependencies are definded in `package` file and can be installed via `> npm i`
 
 Or step by step as shown below  
   
-### Setup SQLAlchemy  
+### SQLAlchemy  
 `> pip install SQLAlchemy`  
   
-### Setup Flask  
+### Flask  
 `> pip install flask`  
 `> pip install -U flask_cors`  
 Start Flask: `python controller.py`  
 Requests `http://127.0.0.1:5000/getProvinces` (check controller.py for all available methods)  
 
-## Frontend SETUP
+### Frontend
 The Angular part of this project was generated with Angular Version 1.7.6.
 
 Run ` npm install angular@1.7.6` to install.
@@ -58,9 +58,8 @@ The Charts of this project are visualized with Angular ChartJS.
 
 Run ` npm install chart.js --save` to install.
 
-### Development server
-
-Start Flask as described in Backend Setup above and navigate to `http://localhost:5000/`.
+## Development server
+To run the application start Flask as described setup the project environment as described in Setup and navigate to `http://localhost:5000/`.
 
 ### Further help
 
