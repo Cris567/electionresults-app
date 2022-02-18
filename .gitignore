@@ -4,6 +4,7 @@
 Thumbs.db
 *.meta
 *.swf
+*.db
 
 ## JSON ##
 *.json

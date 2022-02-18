@@ -5,11 +5,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Integer, Column, String, ForeignKey
 from reader import csv_reader
 from utils import json_dump
-import json
 
 engine = create_engine('sqlite:///btw_results.db')
 Session = sessionmaker(bind = engine)
-session = Session()
 
 Base = declarative_base()
 
@@ -58,15 +56,12 @@ def get_party_by_name(party_name):
 		party = []
 	return party
 
-def insert_results(county, id_c, id_p):
-
+def insert_results(county, id_county, id_province):
 	session = Session()
 	for r in county.get('results'):
 		name = r.get('name')
-		county_id = id_c
-		province_id = id_p
 		party = get_party_by_name(name)
-		if party != []:
+		if party:
 			party_id = party.id
 		else:
 			new_party = Party(name = name)
@@ -79,8 +74,8 @@ def insert_results(county, id_c, id_p):
 		e_previous = r.get('first').get('previous')
 		z_current = r.get('second').get('current')
 		z_previous = r.get('second').get('previous')
-		new_results = Result(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous, party_id = party_id, county_id = id_c, province_id = province_id)
-		
+		new_results = Result(e_current = e_current, e_previous = e_previous, z_current = z_current, z_previous = z_previous, party_id = party_id, county_id = id_county, province_id = id_province)
+
 		session.add(new_results)
 		session.commit()
 	return 'SUCCESS'
@@ -94,7 +89,7 @@ def insert_counties(data):
 			new = Province(id = id, name = name)
 		else:
 			new = County(id = id, belongs_to = belongs_to, name = name)
-		
+
 		session = Session()
 		session.add(new)
 		session.commit()
@@ -105,11 +100,16 @@ def insert_counties(data):
 	return 'SUCCESS'
 
 def insert_csv_data():
-	data = csv_reader()
-	print('Data import in process...')
-	# json_dump('btw17_data.json', data)
-	if insert_counties(data) == 'SUCCESS':
-		print('Data import successful')
+	session = Session()
+	try:
+		data = csv_reader()
+		print('Data import in process...')
+		# json_dump('btw17_data.json', data)
+		if insert_counties(data) == 'SUCCESS':
+			print('Data import successful')
+	finally:
+		session.close()
+		print('DONE.')
 
 def parse_provinces(data):
 	provinces = []
@@ -160,7 +160,6 @@ def parse_results(data):
 	return results
 
 def get_provinces():
-
 	session = Session()
 	results = session.query(Province).all()
 	return parse_provinces(results)
@@ -168,7 +167,7 @@ def get_provinces():
 def get_counties(province_id):
 	results = []
 	session = Session()
-	if province_id == None or province_id == '99':
+	if province_id is None or province_id == '99':
 		results = session.query(County).all()
 	else:
 		results = session.query(County).filter_by(belongs_to = province_id)
@@ -177,7 +176,7 @@ def get_counties(province_id):
 def get_parties(party_id):
 	results = []
 	session = Session()
-	if party_id == None:
+	if party_id is None:
 		results = session.query(Party).all()
 	else:
 		results = session.query(Party).filter_by(id = party_id)
@@ -187,10 +186,10 @@ def get_parties(party_id):
 def get_results_by_county_party_id(county_id, party_id):
 	session = Session()
 
-	if county_id == None:
+	if county_id is None:
 		# TODO only placeholder
 		county_id = 1
-	if party_id == None:
+	if party_id is None:
 		# id 4 = overall valid votes
 		# party_id = 4 #
 		results = session.query(Result).filter_by(county_id = county_id)

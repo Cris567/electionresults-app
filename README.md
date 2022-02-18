@@ -31,7 +31,14 @@ i.e. get all provinces, counties and/or parties:
 ### Import csv data  
 `> python3`  
 `>>> from main import insert_csv_data`  
-`>>> insert_csv_data()`  
+`>>> insert_csv_data()` 
+
+## Dependencies
+Python requirements are definded in `requirements` file and can be installed via ` > pip install -r requirements` 
+
+Node dependencies are definded in `package` file and can be installed via `> npm i`
+
+Or step by step as shown below  
   
 ### Setup SQLAlchemy  
 `> pip install SQLAlchemy`  
